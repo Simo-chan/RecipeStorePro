@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homePageFragment"
+        android:icon="@drawable/home_icon"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/toBuyListFragment"
+        android:icon="@drawable/to_buy_list_icon"
+        android:title="@string/to_buy_list" />
+    <item
+        android:id="@+id/addNewRecipeFragment"
+        android:icon="@drawable/add_icon"
+        android:title="@string/add" />
+    <item
+        android:id="@+id/timerFragment"
+        android:icon="@drawable/timer_icon"
+        android:title="@string/timer" />
+    <item
+        android:id="@+id/settingsFragment"
+        android:icon="@drawable/settings_icon"
+        android:title="@string/settings" />
+</menu>

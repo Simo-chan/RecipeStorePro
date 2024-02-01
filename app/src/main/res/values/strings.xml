@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Recipe Store Pro</string>
+    <string name="welcoming_picture">welcoming picture</string>
+    <string name="email">Email\n</string>
+    <string name="password">Password</string>
+    <string name="log_in">Log In</string>
+    <string name="or_sign_up">or Sign Up</string>
+    <string name="welcome">Welcome!</string>
+    <string name="sign_up">Sign up</string>
+    <string name="create_account">Create account</string>
+    <string name="name">Name</string>
+    <string name="sign_up_with_email">Sign up with email</string>
+    <string name="search_recipe">Search recipe</string>
+    <string name="already_have_an_account_log_in">Already have an account? Log in</string>
+    <string name="all_recipes">All recipes</string>
+    <string name="home">Home</string>
+    <string name="to_buy_list">To buy list</string>
+    <string name="add">Add</string>
+    <string name="timer">Timer</string>
+    <string name="settings">Settings</string>
+    <string name="add_new_recipe">Add new recipe</string>
+    <string name="create_new_recipe">Create new recipe</string>
+    <string name="save_recipe_from_the_web">Save recipe from the Web</string>
+    <string name="clear_all">CLEAR ALL</string>
+    <string name="to_buy_list2">To buy list:</string>
+    <string-array name="recipe_filter">
+        <item>All recipes</item>
+        <item>Recently added</item>
+        <item>Favourites</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.RecipeStorePro" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:fontFamily">@font/opensans_semibold</item>
+        <item name="colorPrimary">@color/black</item>
+    </style>
+
+    <style name="CustomExposedMenu" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+        <item name="boxBackgroundMode">none</item>
+    </style>
+
+</resources>

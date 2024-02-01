@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav_holder"
+    app:startDestination="@id/homePageFragment">
+
+    <fragment
+        android:id="@+id/homePageFragment"
+        android:name="com.example.recipestorepro.ui.HomePageFragment"
+        android:label="HomePageFragment"
+        tools:layout="@layout/home_page_fragment" />
+    <fragment
+        android:id="@+id/toBuyListFragment"
+        android:name="com.example.recipestorepro.ui.ToBuyListFragment"
+        android:label="ToBuyListFragment"
+        tools:layout="@layout/tobuy_list_fragment" />
+    <dialog
+        android:id="@+id/addNewRecipeFragment"
+        android:name="com.example.recipestorepro.ui.AddNewRecipeFragment"
+        android:label="AddNewRecipeFragment"
+        tools:layout="@layout/add_new_repice_fragment" />
+    <fragment
+        android:id="@+id/timerFragment"
+        android:name="com.example.recipestorepro.ui.TimerFragment"
+        android:label="TimerFragment"
+        tools:layout="@layout/timer_fragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.recipestorepro.ui.SettingsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@layout/settings_fragment" />
+</navigation>
