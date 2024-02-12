@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.recipestorepro.R
-import com.example.recipestorepro.databinding.FragmentTobuyListBinding
+import com.example.recipestorepro.databinding.FragmentCreateNewRecipeBinding
 
-class ToBuyListFragment : Fragment(R.layout.fragment_tobuy_list) {
+class CreateNewRecipeFragment : Fragment(R.layout.fragment_create_new_recipe) {
 
-    private var _binding: FragmentTobuyListBinding? = null
+    private var _binding: FragmentCreateNewRecipeBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -18,9 +18,13 @@ class ToBuyListFragment : Fragment(R.layout.fragment_tobuy_list) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentTobuyListBinding.inflate(inflater, container, false)
+        _binding = FragmentCreateNewRecipeBinding.inflate(inflater, container, false)
         return binding.root
     }
+
+
+
+
 
 
     override fun onDestroy() {

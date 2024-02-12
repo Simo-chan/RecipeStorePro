@@ -2,6 +2,7 @@ package com.example.recipestorepro.data.local.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 import java.util.UUID
 
 @Entity
@@ -15,4 +16,4 @@ data class LocalRecipe(
 
     @PrimaryKey(autoGenerate = false)
     var recipeId: String = UUID.randomUUID().toString()
-)
+) : Serializable

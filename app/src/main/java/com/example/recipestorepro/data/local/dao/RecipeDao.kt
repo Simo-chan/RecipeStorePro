@@ -1,10 +1,12 @@
 package com.example.recipestorepro.data.local.dao
 
+import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Upsert
 import com.example.recipestorepro.data.local.models.LocalRecipe
 import kotlinx.coroutines.flow.Flow
 
+@Dao
 interface RecipeDao {
 
     @Upsert
@@ -14,16 +16,16 @@ interface RecipeDao {
     fun getRecipesOrderedByDate(): Flow<List<LocalRecipe>>
 
     @Query("DELETE FROM LocalRecipe WHERE recipeId=:recipeId")
-    suspend fun deleteRecipe(recipeId: LocalRecipe)
+    suspend fun deleteRecipe(recipeId: String)
 
     @Query("UPDATE LocalRecipe SET locallyDeleted = 1 WHERE recipeId=:recipeId")
-    suspend fun deleteRecipeLocally(recipeId: LocalRecipe)
+    suspend fun deleteRecipeLocally(recipeId: String)
 
     @Query("SELECT * FROM LocalRecipe WHERE remotelyConnected = 0")
-    suspend fun getAllLocalRecipes(recipeId: LocalRecipe): List<LocalRecipe>
+    suspend fun getAllLocalRecipes(): List<LocalRecipe>
 
     @Query("SELECT * FROM LocalRecipe WHERE locallyDeleted = 1")
-    suspend fun getAllLocallyDeletedRecipes(recipe: LocalRecipe): List<LocalRecipe>
+    suspend fun getAllLocallyDeletedRecipes(): List<LocalRecipe>
 
 
 }

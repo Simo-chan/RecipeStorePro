@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/add_newrecipe_style"
+    android:background="@drawable/custom_add_newrecipe_style"
     android:orientation="vertical">
 
     <TextView
@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:drawableStart="@drawable/download_icon"
+        android:drawableStart="@drawable/ic_download"
         android:drawablePadding="10dp"
         android:padding="10dp"
         android:text="@string/save_recipe_from_the_web"
@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:drawableStart="@drawable/create_icon"
+        android:drawableStart="@drawable/ic_create"
         android:drawablePadding="10dp"
         android:padding="10dp"
         android:text="@string/create_new_recipe"

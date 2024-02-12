@@ -23,6 +23,9 @@
     <string name="save_recipe_from_the_web">Save recipe from the Web</string>
     <string name="clear_all">CLEAR ALL</string>
     <string name="to_buy_list2">To buy list:</string>
+    <string name="title">Title</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="instructions">Instructions</string>
     <string-array name="recipe_filter">
         <item>All recipes</item>
         <item>Recently added</item>
