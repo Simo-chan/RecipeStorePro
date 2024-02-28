@@ -86,7 +86,7 @@ dependencies {
     //Networking
     implementation("com.squareup.retrofit2:retrofit:2.7.2")
     implementation("com.squareup.retrofit2:converter-gson:2.7.2")
-    implementation("com.squareup.okhttp3:logging-interceptor:3.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
     implementation ("com.squareup.okhttp3:okhttp-urlconnection:4.9.0")
 
     // Room
@@ -97,7 +97,7 @@ dependencies {
     //Dagger - Hilt
     implementation ("com.google.dagger:hilt-android:2.48")
     ksp ("com.google.dagger:hilt-android-compiler:2.48")
-    ksp ("androidx.hilt:hilt-compiler:1.1.0")
+    ksp ("androidx.hilt:hilt-compiler:1.2.0")
 
     //data-store
     implementation ("androidx.datastore:datastore-preferences:1.0.0")

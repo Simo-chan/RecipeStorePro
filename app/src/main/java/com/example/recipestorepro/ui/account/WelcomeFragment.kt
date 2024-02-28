@@ -1,29 +1,31 @@
-package com.example.recipestorepro.ui
-
+package com.example.recipestorepro.ui.account
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.recipestorepro.R
-import com.example.recipestorepro.databinding.DialogAddNewRepiceBinding
-import com.example.recipestorepro.databinding.FragmentCreateNewRecipeBinding
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.example.recipestorepro.databinding.FragmentWelcomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class AddNewRecipeDialog : BottomSheetDialogFragment(R.layout.dialog_add_new_repice) {
+@AndroidEntryPoint
+class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
 
-    private var _binding: DialogAddNewRepiceBinding? = null
+    private var _binding: FragmentWelcomeBinding? = null
     private val binding get() = _binding!!
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = DialogAddNewRepiceBinding.inflate(inflater, container, false)
+        _binding = FragmentWelcomeBinding.inflate(inflater, container, false)
         return binding.root
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,15 +33,21 @@ class AddNewRecipeDialog : BottomSheetDialogFragment(R.layout.dialog_add_new_rep
         setUpClickListeners()
     }
 
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
 
+
     private fun setUpClickListeners() {
-        binding.createRecipe.setOnClickListener {
-            findNavController().navigate(R.id.action_addNewRecipeFragment_to_createNewRecipeFragment)
+
+        binding.signUpButtonWelcome.setOnClickListener {
+            findNavController().navigate(R.id.action_welcomeFragment_to_signUpFragment)
+        }
+
+        binding.logInButtonWelcome.setOnClickListener {
+            findNavController().navigate(R.id.action_welcomeFragment_to_loginFragment)
         }
     }
+
 }

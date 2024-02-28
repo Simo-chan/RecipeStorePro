@@ -1,4 +1,4 @@
-package com.example.recipestorepro.ui
+package com.example.recipestorepro.ui.recipes
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.recipestorepro.R
-import com.example.recipestorepro.databinding.FragmentTobuyListBinding
+import com.example.recipestorepro.databinding.FragmentTimerBinding
 
-class ToBuyListFragment : Fragment(R.layout.fragment_tobuy_list) {
+class TimerFragment : Fragment(R.layout.fragment_timer) {
 
-    private var _binding: FragmentTobuyListBinding? = null
+    private var _binding: FragmentTimerBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -18,7 +18,7 @@ class ToBuyListFragment : Fragment(R.layout.fragment_tobuy_list) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentTobuyListBinding.inflate(inflater, container, false)
+        _binding = FragmentTimerBinding.inflate(inflater, container, false)
         return binding.root
     }
 

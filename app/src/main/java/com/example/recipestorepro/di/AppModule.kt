@@ -3,7 +3,10 @@ package com.example.recipestorepro.di
 import android.content.Context
 import androidx.room.Room
 import com.example.recipestorepro.data.local.RecipeDB
+import com.example.recipestorepro.data.local.dao.RecipeDao
 import com.example.recipestorepro.data.remote.RecipeApi
+import com.example.recipestorepro.repository.RecipeRepo
+import com.example.recipestorepro.repository.RecipeRepoImpl
 import com.example.recipestorepro.utils.Constants.BASE_URL
 import com.example.recipestorepro.utils.SessionManager
 import dagger.Module
@@ -56,5 +59,19 @@ object AppModule {
             .client(client)
             .build()
             .create(RecipeApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRecipeRepo(
+        recipeApi: RecipeApi,
+        recipeDao: RecipeDao,
+        sessionManager: SessionManager
+    ): RecipeRepo {
+        return RecipeRepoImpl(
+            recipeApi,
+            recipeDao,
+            sessionManager
+        )
     }
 }

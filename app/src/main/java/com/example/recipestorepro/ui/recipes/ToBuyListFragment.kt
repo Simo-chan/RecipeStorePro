@@ -1,4 +1,4 @@
-package com.example.recipestorepro.ui
+package com.example.recipestorepro.ui.recipes
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.recipestorepro.R
-import com.example.recipestorepro.databinding.FragmentCreateNewRecipeBinding
+import com.example.recipestorepro.databinding.FragmentTobuyListBinding
 
-class CreateNewRecipeFragment : Fragment(R.layout.fragment_create_new_recipe) {
+class ToBuyListFragment : Fragment(R.layout.fragment_tobuy_list) {
 
-    private var _binding: FragmentCreateNewRecipeBinding? = null
+    private var _binding: FragmentTobuyListBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -18,13 +18,9 @@ class CreateNewRecipeFragment : Fragment(R.layout.fragment_create_new_recipe) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCreateNewRecipeBinding.inflate(inflater, container, false)
+        _binding = FragmentTobuyListBinding.inflate(inflater, container, false)
         return binding.root
     }
-
-
-
-
 
 
     override fun onDestroy() {

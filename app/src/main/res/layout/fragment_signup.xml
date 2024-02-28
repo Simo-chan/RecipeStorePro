@@ -34,7 +34,7 @@
         android:id="@+id/nameEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:autofillHints=""
         android:background="@drawable/custom_input"
         android:hint="@string/name"
@@ -43,14 +43,14 @@
         android:paddingStart="12dp"
         android:textColor="@color/white"
         android:textColorHint="@color/grey"
-        app:layout_constraintBottom_toTopOf="@+id/emailEditText"
+        app:layout_constraintBottom_toTopOf="@+id/emailEdTxSignUp"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
         app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal" />
 
 
     <EditText
-        android:id="@+id/emailEditText"
+        android:id="@+id/emailEdTxSignUp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -62,14 +62,14 @@
         android:paddingStart="12dp"
         android:textColor="@color/white"
         android:textColorHint="@color/grey"
-        app:layout_constraintBottom_toTopOf="@+id/passwordEditText"
+        app:layout_constraintBottom_toTopOf="@+id/passwordEdTxSignUp"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
         app:layout_constraintTop_toBottomOf="@id/nameEditText" />
 
 
     <EditText
-        android:id="@+id/passwordEditText"
+        android:id="@+id/passwordEdTxSignUp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -81,10 +81,28 @@
         android:paddingStart="12dp"
         android:textColor="@color/white"
         android:textColorHint="@color/grey"
+        app:layout_constraintBottom_toTopOf="@+id/confirmPasswordEditText"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@+id/emailEdTxSignUp" />
+
+    <EditText
+        android:id="@+id/confirmPasswordEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:autofillHints="passwordAddress"
+        android:background="@drawable/custom_input"
+        android:hint="@string/confirm_password"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:paddingStart="12dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/grey"
         app:layout_constraintBottom_toTopOf="@+id/createAccountButton"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
-        app:layout_constraintTop_toBottomOf="@+id/emailEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordEdTxSignUp" />
 
 
     <Button
@@ -96,7 +114,17 @@
         android:text="@string/create_account"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/confirmPasswordEditText" />
+
+    <ProgressBar
+        android:id="@+id/progressBarSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@+id/confirmPasswordEditText" />
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -104,7 +132,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.35" />
+        app:layout_constraintGuide_percent="0.30" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineStart"

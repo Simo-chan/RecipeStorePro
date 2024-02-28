@@ -26,6 +26,9 @@
     <string name="title">Title</string>
     <string name="ingredients">Ingredients</string>
     <string name="instructions">Instructions</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="log_out">Log out</string>
+    <string name="start_cooking">Start cooking!</string>
     <string-array name="recipe_filter">
         <item>All recipes</item>
         <item>Recently added</item>

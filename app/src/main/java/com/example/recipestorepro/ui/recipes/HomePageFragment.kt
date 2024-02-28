@@ -1,4 +1,4 @@
-package com.example.recipestorepro.ui
+package com.example.recipestorepro.ui.recipes
 
 import android.os.Bundle
 import android.view.LayoutInflater
