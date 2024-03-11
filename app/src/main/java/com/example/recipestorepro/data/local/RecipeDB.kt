@@ -2,8 +2,7 @@ package com.example.recipestorepro.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.recipestorepro.data.local.dao.RecipeDao
-import com.example.recipestorepro.data.local.models.LocalRecipe
+import com.example.recipestorepro.domain.models.LocalRecipe
 
 @Database(
     entities = [LocalRecipe::class],
