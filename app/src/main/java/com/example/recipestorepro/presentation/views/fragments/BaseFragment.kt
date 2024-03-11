@@ -1,30 +1,35 @@
-package com.example.recipestorepro.presentation.fragments
+package com.example.recipestorepro.presentation.views.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseFragment<VB : ViewBinding> : Fragment() {
+typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
+
+abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflate<VB>) : Fragment() {
 
     private var _binding: VB? = null
     val binding get() = _binding!!
-
-    abstract fun inflateBinding(inflater: LayoutInflater, container: ViewGroup?): VB
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = inflateBinding(inflater, container)
+        _binding = inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onDestroy() {
         _binding = null
         super.onDestroy()
+    }
+
+    fun showResultMessage(message: String?) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 }

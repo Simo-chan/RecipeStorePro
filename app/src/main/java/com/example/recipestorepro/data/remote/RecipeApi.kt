@@ -1,6 +1,5 @@
 package com.example.recipestorepro.data.remote
 
-import com.example.recipestorepro.domain.models.RemoteRecipe
 import com.example.recipestorepro.domain.models.SimpleResponse
 import com.example.recipestorepro.domain.models.User
 import retrofit2.http.Body

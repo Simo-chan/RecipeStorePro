@@ -1,32 +1,32 @@
 package com.example.recipestorepro.domain.use_case
 
+import android.content.res.Resources
 import com.example.recipestorepro.R
 import com.example.recipestorepro.domain.models.User
 import com.example.recipestorepro.domain.repository.RecipeRepo
-import com.example.recipestorepro.domain.utils.ResourceManager
 import com.example.recipestorepro.domain.utils.Result
 import java.util.regex.Pattern
 
-class CreateUser(
+class CreateUserUseCase(
     private val repository: RecipeRepo,
-    private val resourceManager: ResourceManager
+    private val resources: Resources
 ) {
-    suspend operator fun invoke(user: User, confirmPassword: String): Result<String> {
+    suspend fun create(user: User, confirmPassword: String): Result<String> {
 
-        if (user.name!!.isEmpty() || user.email.isEmpty() || user.password.isEmpty()) {
-            return Result.Error(resourceManager.getString(R.string.fields_empty))
+        if (user.name.orEmpty().isEmpty() || user.email.isEmpty() || user.password.isEmpty()) {
+            return Result.Error(resources.getString(R.string.fields_empty))
         }
 
         if (!isEmailValid(user.email)) {
-            return Result.Error(resourceManager.getString(R.string.email_error))
+            return Result.Error(resources.getString(R.string.email_error))
         }
 
         if (!isPasswordValid(user.password)) {
-            return Result.Error(resourceManager.getString(R.string.password_error))
+            return Result.Error(resources.getString(R.string.password_error))
         }
 
         if (user.password != confirmPassword) {
-            return Result.Error(resourceManager.getString(R.string.passwords_mismatching))
+            return Result.Error(resources.getString(R.string.passwords_mismatching))
         }
 
         return repository.createUser(user)

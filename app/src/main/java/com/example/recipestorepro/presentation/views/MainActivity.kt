@@ -1,4 +1,4 @@
-package com.example.recipestorepro.presentation
+package com.example.recipestorepro.presentation.views
 
 import android.os.Bundle
 import android.view.View
@@ -40,7 +40,9 @@ class MainActivity : AppCompatActivity() {
 
         navHostFragment.findNavController().addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.welcomeFragment, R.id.loginFragment, R.id.signUpFragment -> bottomNavigationView.visibility =
+                R.id.welcomeFragment,
+                R.id.loginFragment,
+                R.id.signUpFragment -> bottomNavigationView.visibility =
                     View.GONE
 
                 else -> bottomNavigationView.visibility = View.VISIBLE
@@ -52,12 +54,11 @@ class MainActivity : AppCompatActivity() {
     private fun setStartDestination() {
         val navController = findNavController(R.id.navHostFragment)
         val navGraph = navController.graph
-        val startDestination =
-            if (sessionManager.isUserLoggedIn()) {
-                R.id.homePageFragment
-            } else {
-                R.id.welcomeFragment
-            }
+        val startDestination = if (sessionManager.isUserLoggedIn()) {
+            R.id.homePageFragment
+        } else {
+            R.id.welcomeFragment
+        }
 
         navGraph.setStartDestination(startDestination)
         navController.graph = navGraph

@@ -1,24 +1,15 @@
-package com.example.recipestorepro.presentation.fragments.account
+package com.example.recipestorepro.presentation.views.fragments.account
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.recipestorepro.R
 import com.example.recipestorepro.databinding.FragmentWelcomeBinding
-import com.example.recipestorepro.presentation.fragments.BaseFragment
+import com.example.recipestorepro.presentation.views.fragments.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>() {
-
-    override fun inflateBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?
-    ): FragmentWelcomeBinding {
-        return FragmentWelcomeBinding.inflate(inflater, container, false)
-    }
+class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBinding::inflate) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

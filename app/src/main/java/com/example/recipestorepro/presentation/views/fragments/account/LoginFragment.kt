@@ -1,33 +1,23 @@
-package com.example.recipestorepro.presentation.fragments.account
+package com.example.recipestorepro.presentation.views.fragments.account
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.recipestorepro.R
 import com.example.recipestorepro.databinding.FragmentLoginBinding
-import com.example.recipestorepro.presentation.fragments.BaseFragment
-import com.example.recipestorepro.presentation.viewmodels.LoginViewModel
 import com.example.recipestorepro.domain.utils.Result
+import com.example.recipestorepro.presentation.viewmodels.LoginViewModel
+import com.example.recipestorepro.presentation.views.fragments.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class LoginFragment : BaseFragment<FragmentLoginBinding>() {
+class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
 
     private val loginViewModel: LoginViewModel by activityViewModels()
-
-    override fun inflateBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?
-    ): FragmentLoginBinding {
-        return FragmentLoginBinding.inflate(inflater, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,15 +44,13 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             when (result) {
                 is Result.Success -> {
                     hideProgressBar()
-                    Toast.makeText(requireContext(), result.resultMessage, Toast.LENGTH_SHORT)
-                        .show()
+                    showResultMessage(result.resultMessage)
                     findNavController().navigate(R.id.action_loginFragment_to_homePageFragment)
                 }
 
                 is Result.Error -> {
                     hideProgressBar()
-                    Toast.makeText(requireContext(), result.resultMessage, Toast.LENGTH_SHORT)
-                        .show()
+                    showResultMessage(result.resultMessage)
                 }
 
                 is Result.Loading -> {

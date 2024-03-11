@@ -4,8 +4,8 @@ import com.example.recipestorepro.domain.models.User
 import com.example.recipestorepro.domain.repository.RecipeRepo
 import com.example.recipestorepro.domain.utils.Result
 
-class GetUser(private val repository: RecipeRepo) {
-    suspend operator fun invoke(): Result<User> {
+class GetUserUseCase(private val repository: RecipeRepo) {
+    suspend fun getUser(): Result<User> {
         return repository.getUser()
     }
 }

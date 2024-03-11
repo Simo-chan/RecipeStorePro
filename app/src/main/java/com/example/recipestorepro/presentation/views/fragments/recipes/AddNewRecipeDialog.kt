@@ -1,4 +1,4 @@
-package com.example.recipestorepro.presentation.fragments.recipes
+package com.example.recipestorepro.presentation.views.fragments.recipes
 
 
 import android.os.Bundle

@@ -1,33 +1,23 @@
-package com.example.recipestorepro.presentation.fragments.account
+package com.example.recipestorepro.presentation.views.fragments.account
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.recipestorepro.R
 import com.example.recipestorepro.databinding.FragmentSettingsBinding
-import com.example.recipestorepro.presentation.fragments.BaseFragment
-import com.example.recipestorepro.presentation.viewmodels.SettingsViewModel
 import com.example.recipestorepro.domain.utils.Result
+import com.example.recipestorepro.presentation.viewmodels.SettingsViewModel
+import com.example.recipestorepro.presentation.views.fragments.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
+class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsBinding::inflate) {
 
     private val settingsViewModel: SettingsViewModel by activityViewModels()
-
-    override fun inflateBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?
-    ): FragmentSettingsBinding {
-        return FragmentSettingsBinding.inflate(inflater, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,7 +43,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
                 }
 
                 is Result.Error -> {
-                    Toast.makeText(requireContext(), result.resultMessage, Toast.LENGTH_SHORT).show()
+                    showResultMessage(result.resultMessage)
                 }
 
                 is Result.Loading -> {
@@ -68,13 +58,13 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
             when (result) {
                 is Result.Success -> {
                     hideProgressBar()
-                    Toast.makeText(requireContext(), result.resultMessage, Toast.LENGTH_SHORT).show()
+                    showResultMessage(result.resultMessage)
                     findNavController().navigate(R.id.action_settingsFragment_to_welcomeFragment)
                 }
 
                 is Result.Error -> {
                     hideProgressBar()
-                    Toast.makeText(requireContext(), result.resultMessage, Toast.LENGTH_SHORT).show()
+                    showResultMessage(result.resultMessage)
                 }
 
                 is Result.Loading -> {

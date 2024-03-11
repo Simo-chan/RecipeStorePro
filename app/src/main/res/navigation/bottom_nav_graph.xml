@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homePageFragment"
-        android:name="com.example.recipestorepro.presentation.fragments.recipes.HomePageFragment"
+        android:name="com.example.recipestorepro.presentation.views.fragments.recipes.HomePageFragment"
         android:label="HomePageFragment"
         tools:layout="@layout/fragment_home_page">
         <action
@@ -17,13 +17,13 @@
 
     <fragment
         android:id="@+id/toBuyListFragment"
-        android:name="com.example.recipestorepro.presentation.fragments.recipes.ToBuyListFragment"
+        android:name="com.example.recipestorepro.presentation.views.fragments.recipes.ToBuyListFragment"
         android:label="ToBuyListFragment"
         tools:layout="@layout/fragment_tobuy_list" />
 
     <dialog
         android:id="@+id/addNewRecipeFragment"
-        android:name="com.example.recipestorepro.presentation.fragments.recipes.AddNewRecipeDialog"
+        android:name="com.example.recipestorepro.presentation.views.fragments.recipes.AddNewRecipeDialog"
         android:label="AddNewRecipeFragment"
         tools:layout="@layout/dialog_add_new_repice">
         <action
@@ -33,13 +33,13 @@
 
     <fragment
         android:id="@+id/timerFragment"
-        android:name="com.example.recipestorepro.presentation.fragments.recipes.TimerFragment"
+        android:name="com.example.recipestorepro.presentation.views.fragments.recipes.TimerFragment"
         android:label="TimerFragment"
         tools:layout="@layout/fragment_timer" />
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.recipestorepro.presentation.fragments.account.SettingsFragment"
+        android:name="com.example.recipestorepro.presentation.views.fragments.account.SettingsFragment"
         android:label="SettingsFragment"
         tools:layout="@layout/fragment_settings">
         <action
@@ -49,7 +49,7 @@
 
     <fragment
         android:id="@+id/createNewRecipeFragment"
-        android:name="com.example.recipestorepro.presentation.fragments.recipes.CreateNewRecipeFragment"
+        android:name="com.example.recipestorepro.presentation.views.fragments.recipes.CreateNewRecipeFragment"
         android:label="CreateNewRecipeFragment"
         tools:layout="@layout/fragment_create_new_recipe">
         <argument
@@ -61,7 +61,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.recipestorepro.presentation.fragments.account.LoginFragment"
+        android:name="com.example.recipestorepro.presentation.views.fragments.account.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
@@ -73,7 +73,7 @@
 
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.example.recipestorepro.presentation.fragments.account.SignUpFragment"
+        android:name="com.example.recipestorepro.presentation.views.fragments.account.SignUpFragment"
         android:label="SignUpFragment"
         tools:layout="@layout/fragment_signup">
         <action
@@ -85,7 +85,7 @@
 
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.example.recipestorepro.presentation.fragments.account.WelcomeFragment"
+        android:name="com.example.recipestorepro.presentation.views.fragments.account.WelcomeFragment"
         android:label="WelcomeFragment"
         tools:layout="@layout/fragment_welcome">
         <action

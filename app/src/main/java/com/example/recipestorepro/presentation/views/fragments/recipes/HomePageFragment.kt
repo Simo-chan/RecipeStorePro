@@ -1,24 +1,15 @@
-package com.example.recipestorepro.presentation.fragments.recipes
+package com.example.recipestorepro.presentation.views.fragments.recipes
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.navigation.fragment.findNavController
 import com.example.recipestorepro.R
-import com.example.recipestorepro.adapters.HomePageRecyclerAdapter
 import com.example.recipestorepro.databinding.FragmentHomePageBinding
-import com.example.recipestorepro.presentation.fragments.BaseFragment
+import com.example.recipestorepro.presentation.views.adapters.HomePageRecyclerAdapter
+import com.example.recipestorepro.presentation.views.fragments.BaseFragment
 
-class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
-
-    override fun inflateBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?
-    ): FragmentHomePageBinding {
-        return FragmentHomePageBinding.inflate(inflater, container, false)
-    }
+class HomePageFragment : BaseFragment<FragmentHomePageBinding>(FragmentHomePageBinding::inflate) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,9 +21,7 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
 
         val recipeFilterStrings = resources.getStringArray(R.array.recipe_filter)
         val arrayAdapter = ArrayAdapter(
-            requireContext(),
-            R.layout.recipe_filter_dropdown_item,
-            recipeFilterStrings
+            requireContext(), R.layout.recipe_filter_dropdown_item, recipeFilterStrings
         )
         binding.autoCompleteTextView.setAdapter(arrayAdapter)
     }

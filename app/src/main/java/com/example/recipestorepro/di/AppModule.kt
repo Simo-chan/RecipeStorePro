@@ -1,6 +1,7 @@
 package com.example.recipestorepro.di
 
 import android.content.Context
+import android.content.res.Resources
 import androidx.room.Room
 import com.example.recipestorepro.data.local.RecipeDB
 import com.example.recipestorepro.data.local.RecipeDao
@@ -8,12 +9,10 @@ import com.example.recipestorepro.data.remote.ContentTypeInterceptor
 import com.example.recipestorepro.data.remote.RecipeApi
 import com.example.recipestorepro.data.repository.RecipeRepoImpl
 import com.example.recipestorepro.domain.repository.RecipeRepo
-import com.example.recipestorepro.domain.use_case.AccountUseCases
-import com.example.recipestorepro.domain.use_case.CreateUser
-import com.example.recipestorepro.domain.use_case.GetUser
-import com.example.recipestorepro.domain.use_case.LogOut
-import com.example.recipestorepro.domain.use_case.Login
-import com.example.recipestorepro.domain.utils.ResourceManager
+import com.example.recipestorepro.domain.use_case.CreateUserUseCase
+import com.example.recipestorepro.domain.use_case.GetUserUseCase
+import com.example.recipestorepro.domain.use_case.LogOutUseCase
+import com.example.recipestorepro.domain.use_case.LoginUseCase
 import com.example.recipestorepro.data.utils.SessionManager
 import dagger.Module
 import dagger.Provides
@@ -76,37 +75,53 @@ object AppModule {
         recipeApi: RecipeApi,
         recipeDao: RecipeDao,
         sessionManager: SessionManager,
-        resourceManager: ResourceManager
+        resources: Resources
     ): RecipeRepo {
         return RecipeRepoImpl(
             recipeApi,
             recipeDao,
             sessionManager,
-            resourceManager
+            resources
         )
     }
 
     @Provides
     @Singleton
-    fun provideAccountUseCases(
+    fun provideResources(@ApplicationContext context: Context): Resources {
+        return context.resources
+    }
+
+    @Provides
+    @Singleton
+    fun provideCreateUserUseCase(
         repo: RecipeRepo,
-        resManager: ResourceManager
-    ): AccountUseCases {
-        return AccountUseCases(
-            createUser = CreateUser(repo, resManager),
-            getUser = GetUser(repo),
-            login = Login(repo, resManager),
-            logOut = LogOut(repo)
-        )
+        resources: Resources
+    ): CreateUserUseCase {
+        return CreateUserUseCase(repo, resources)
     }
 
     @Provides
     @Singleton
-    fun provideResourceManager(@ApplicationContext context: Context): ResourceManager {
-        return object : ResourceManager {
-            override fun getString(id: Int): String {
-                return context.getString(id)
-            }
-        }
+    fun provideGetUserUseCase(
+        repo: RecipeRepo
+    ): GetUserUseCase {
+        return GetUserUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
+    fun provideLoginUseCase(
+        repo: RecipeRepo,
+        resources: Resources
+    ): LoginUseCase {
+        return LoginUseCase(repo, resources)
+    }
+
+    @Provides
+    @Singleton
+    fun provideLogoutUseCase(
+        repo: RecipeRepo
+    ): LogOutUseCase {
+        return LogOutUseCase(repo)
     }
 }

@@ -4,7 +4,8 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.recipestorepro.domain.models.User
-import com.example.recipestorepro.domain.use_case.AccountUseCases
+import com.example.recipestorepro.domain.use_case.GetUserUseCase
+import com.example.recipestorepro.domain.use_case.LogOutUseCase
 import com.example.recipestorepro.domain.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -16,7 +17,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
-    private val accountUseCases: AccountUseCases
+    private val getUserUseCase: GetUserUseCase,
+    private val logOutUseCase: LogOutUseCase
 ) : ViewModel() {
 
     private val _currentUserState = MutableSharedFlow<Result<User>>()
@@ -25,33 +27,24 @@ class SettingsViewModel @Inject constructor(
     private val _logOutState = MutableSharedFlow<Result<String>>()
     val logOutState: SharedFlow<Result<String>> = _logOutState
 
-    private val currentViewModel = "SettingsViewModel"
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-        Log.d(currentViewModel, "$throwable")
+        Log.d(CURRENT_VIEW_MODEL, "$throwable")
     }
 
     fun getCurrentUser() = viewModelScope.launch(
         Dispatchers.IO + exceptionHandler
     ) {
         _currentUserState.emit(Result.Loading())
-
-        try {
-            _currentUserState.emit(accountUseCases.getUser())
-        } catch (e: Exception) {
-            _currentUserState.emit(Result.Error(e.toString()))
-            return@launch
-        }
+        _currentUserState.emit(getUserUseCase.getUser())
     }
 
     fun logout() = viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
         _logOutState.emit(Result.Loading())
+        _logOutState.emit(logOutUseCase.logout())
+    }
 
-        try {
-            _logOutState.emit(accountUseCases.logOut())
-        } catch (e: Exception) {
-            _logOutState.emit(Result.Error(e.toString()))
-            return@launch
-        }
+    private companion object {
+        const val CURRENT_VIEW_MODEL = "SettingsViewModel"
     }
 }
 

@@ -1,4 +1,4 @@
-package com.example.recipestorepro.domain.models
+package com.example.recipestorepro.data.remote
 
 import java.io.Serializable
 
