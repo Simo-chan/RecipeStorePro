@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.recipestorepro.R
 import com.example.recipestorepro.databinding.FragmentSignupBinding
 import com.example.recipestorepro.domain.utils.Result
-import com.example.recipestorepro.presentation.viewmodels.SignUpViewModel
+import com.example.recipestorepro.presentation.viewmodels.account.SignUpViewModel
 import com.example.recipestorepro.presentation.views.fragments.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

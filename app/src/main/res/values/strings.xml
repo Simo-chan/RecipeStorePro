@@ -2,7 +2,8 @@
     <string name="app_name">Recipe Store Pro</string>
     <string name="welcoming_picture">welcoming picture</string>
     <string name="search_recipe">Search recipe</string>
-    <string name="all_recipes">All recipes</string>
+    <string name="recently_added">Recently added</string>
+    <string name="favorites">Favorites</string>
     <string name="home">Home</string>
     <string name="to_buy_list">To buy list</string>
     <string name="add">Add</string>
@@ -17,11 +18,6 @@
     <string name="ingredients">Ingredients</string>
     <string name="instructions">Instructions</string>
     <string name="start_cooking">Start cooking!</string>
-    <string-array name="recipe_filter">
-        <item>All recipes</item>
-        <item>Recently added</item>
-        <item>Favourites</item>
-    </string-array>
 
     <string name="email">Email\n</string>
     <string name="password">Password</string>
@@ -45,5 +41,13 @@
     <string name="email_error">This email is not valid!</string>
     <string name="passwords_mismatching">Passwords should be the same!</string>
     <string name="password_error">Passwords length should be between 6 and 20 symbols!</string>
+
+    <string name="recipe_saved_locally">Recipe is saved locally!</string>
+    <string name="recipe_saved">Recipe is saved!</string>
+    <string name="recipe_updated_locally">Recipe is updated locally!</string>
+    <string name="recipe_updated">Recipe is updated!</string>
+    <string name="fav_stat_updated">Favorite status is updated!</string>">
+    <string name="recipe_deleted">Recipe deleted!</string>
+    <string name="undo">Undo</string>
 
 </resources>

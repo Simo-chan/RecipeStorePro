@@ -1,6 +1,7 @@
 package com.example.recipestorepro.presentation.views.adapters
 
 import androidx.recyclerview.widget.DiffUtil
+import com.example.recipestorepro.domain.models.RecipeItem
 
 class RecipeDiffUtilCallBack(
     private val oldList: List<RecipeItem>,

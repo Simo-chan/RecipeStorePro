@@ -24,18 +24,25 @@ interface RecipeApi {
     @POST("$API_VERSION/recipes/create")
     suspend fun createRecipe(
         @Header("Authorization") token: String,
-        @Body recipe: RemoteRecipe
+        @Body recipe: RemoteRecipeDTO
     ): SimpleResponse
 
     @GET("$API_VERSION/recipes")
     suspend fun getAllRecipes(
         @Header("Authorization") token: String,
-    ): List<RemoteRecipe>
+    ): List<RemoteRecipeDTO>
 
     @POST("$API_VERSION/recipes/update")
     suspend fun updateRecipe(
         @Header("Authorization") token: String,
-        @Body recipe: RemoteRecipe
+        @Body recipe: RemoteRecipeDTO
+    ): SimpleResponse
+
+    @POST("$API_VERSION/recipes/updateFavoriteStatus")
+    suspend fun updateFavoriteStatus(
+        @Header("Authorization") token: String,
+        @Query("id") id: String,
+        @Body isFavorite: Boolean
     ): SimpleResponse
 
     @DELETE("$API_VERSION/recipes/delete")

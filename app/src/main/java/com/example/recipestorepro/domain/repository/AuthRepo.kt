@@ -3,7 +3,7 @@ package com.example.recipestorepro.domain.repository
 import com.example.recipestorepro.domain.models.User
 import com.example.recipestorepro.domain.utils.Result
 
-interface RecipeRepo {
+interface AuthRepo {
 
     suspend fun createUser(user: User): Result<String>
 

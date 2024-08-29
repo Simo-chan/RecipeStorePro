@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_home_page">
         <action
             android:id="@+id/action_homePageFragment_to_createNewRecipeFragment"
-            app:destination="@id/createNewRecipeFragment" />
+            app:destination="@id/createNewRecipeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
 
     <fragment
@@ -25,7 +27,7 @@
         android:id="@+id/addNewRecipeFragment"
         android:name="com.example.recipestorepro.presentation.views.fragments.recipes.AddNewRecipeDialog"
         android:label="AddNewRecipeFragment"
-        tools:layout="@layout/dialog_add_new_repice">
+        tools:layout="@layout/dialog_add_new_recipe">
         <action
             android:id="@+id/action_addNewRecipeFragment_to_createNewRecipeFragment"
             app:destination="@id/createNewRecipeFragment" />
@@ -54,9 +56,10 @@
         tools:layout="@layout/fragment_create_new_recipe">
         <argument
             android:name="recipe"
-            android:defaultValue="@null"
-            app:argType="com.example.recipestorepro.domain.models.LocalRecipe"
-            app:nullable="true" />
+            app:argType="com.example.recipestorepro.domain.models.RecipeItem"
+            app:nullable="true"
+            android:defaultValue="@null" />
+
     </fragment>
 
     <fragment

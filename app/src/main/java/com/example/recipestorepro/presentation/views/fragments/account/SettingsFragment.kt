@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.recipestorepro.R
 import com.example.recipestorepro.databinding.FragmentSettingsBinding
 import com.example.recipestorepro.domain.utils.Result
-import com.example.recipestorepro.presentation.viewmodels.SettingsViewModel
+import com.example.recipestorepro.presentation.viewmodels.account.SettingsViewModel
 import com.example.recipestorepro.presentation.views.fragments.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

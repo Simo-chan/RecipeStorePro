@@ -7,13 +7,23 @@ import com.example.recipestorepro.data.local.RecipeDB
 import com.example.recipestorepro.data.local.RecipeDao
 import com.example.recipestorepro.data.remote.ContentTypeInterceptor
 import com.example.recipestorepro.data.remote.RecipeApi
+import com.example.recipestorepro.data.repository.AuthRepoImpl
 import com.example.recipestorepro.data.repository.RecipeRepoImpl
-import com.example.recipestorepro.domain.repository.RecipeRepo
-import com.example.recipestorepro.domain.use_case.CreateUserUseCase
-import com.example.recipestorepro.domain.use_case.GetUserUseCase
-import com.example.recipestorepro.domain.use_case.LogOutUseCase
-import com.example.recipestorepro.domain.use_case.LoginUseCase
 import com.example.recipestorepro.data.utils.SessionManager
+import com.example.recipestorepro.domain.repository.AuthRepo
+import com.example.recipestorepro.domain.repository.RecipeRepo
+import com.example.recipestorepro.domain.use_case.account.CreateUserUseCase
+import com.example.recipestorepro.domain.use_case.account.GetUserUseCase
+import com.example.recipestorepro.domain.use_case.account.LogOutUseCase
+import com.example.recipestorepro.domain.use_case.account.LoginUseCase
+import com.example.recipestorepro.domain.use_case.recipes.CreateRecipeUseCase
+import com.example.recipestorepro.domain.use_case.recipes.DeleteRecipeUseCase
+import com.example.recipestorepro.domain.use_case.recipes.GetAllRecipesBySearchQueryUseCase
+import com.example.recipestorepro.domain.use_case.recipes.GetAllRecipesUseCase
+import com.example.recipestorepro.domain.use_case.recipes.GetFavoriteRecipesUseCase
+import com.example.recipestorepro.domain.use_case.recipes.SyncRecipesUseCase
+import com.example.recipestorepro.domain.use_case.recipes.UpdateFavoriteStatusUseCase
+import com.example.recipestorepro.domain.use_case.recipes.UpdateRecipeUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -41,7 +51,7 @@ object AppModule {
         @ApplicationContext context: Context
     ): RecipeDB = Room.databaseBuilder(
         context, RecipeDB::class.java, "recipe_db"
-    ).build()
+    ).fallbackToDestructiveMigration().build()
 
 
     @Provides
@@ -71,6 +81,20 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideAuthRepo(
+        recipeApi: RecipeApi,
+        sessionManager: SessionManager,
+        resources: Resources
+    ): AuthRepo {
+        return AuthRepoImpl(
+            recipeApi,
+            sessionManager,
+            resources
+        )
+    }
+
+    @Provides
+    @Singleton
     fun provideRecipeRepo(
         recipeApi: RecipeApi,
         recipeDao: RecipeDao,
@@ -91,10 +115,13 @@ object AppModule {
         return context.resources
     }
 
+
+    //============== USE CASES =============
+
     @Provides
     @Singleton
     fun provideCreateUserUseCase(
-        repo: RecipeRepo,
+        repo: AuthRepo,
         resources: Resources
     ): CreateUserUseCase {
         return CreateUserUseCase(repo, resources)
@@ -103,7 +130,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideGetUserUseCase(
-        repo: RecipeRepo
+        repo: AuthRepo
     ): GetUserUseCase {
         return GetUserUseCase(repo)
     }
@@ -111,7 +138,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideLoginUseCase(
-        repo: RecipeRepo,
+        repo: AuthRepo,
         resources: Resources
     ): LoginUseCase {
         return LoginUseCase(repo, resources)
@@ -120,8 +147,72 @@ object AppModule {
     @Provides
     @Singleton
     fun provideLogoutUseCase(
-        repo: RecipeRepo
+        repo: AuthRepo
     ): LogOutUseCase {
         return LogOutUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCreateRecipeUserCase(
+        repo: RecipeRepo
+    ): CreateRecipeUseCase {
+        return CreateRecipeUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUpdateRecipeUserCase(
+        repo: RecipeRepo
+    ): UpdateRecipeUseCase {
+        return UpdateRecipeUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetAllRecipesBySearchQueryUseCase(
+        repo: RecipeRepo
+    ): GetAllRecipesBySearchQueryUseCase {
+        return GetAllRecipesBySearchQueryUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetAllRecipesUseCase(
+        repo: RecipeRepo
+    ): GetAllRecipesUseCase {
+        return GetAllRecipesUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUpdateFavoriteStatusUseCase(
+        repo: RecipeRepo
+    ): UpdateFavoriteStatusUseCase {
+        return UpdateFavoriteStatusUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetFavoriteRecipesUseCase(
+        repo: RecipeRepo
+    ): GetFavoriteRecipesUseCase {
+        return GetFavoriteRecipesUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDeleteRecipeUseCase(
+        repo: RecipeRepo
+    ): DeleteRecipeUseCase {
+        return DeleteRecipeUseCase(repo)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSyncRecipesUseCase(
+        repo: RecipeRepo
+    ): SyncRecipesUseCase {
+        return SyncRecipesUseCase(repo)
     }
 }

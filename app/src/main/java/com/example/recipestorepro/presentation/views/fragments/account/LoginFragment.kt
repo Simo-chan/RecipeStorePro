@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.recipestorepro.R
 import com.example.recipestorepro.databinding.FragmentLoginBinding
 import com.example.recipestorepro.domain.utils.Result
-import com.example.recipestorepro.presentation.viewmodels.LoginViewModel
+import com.example.recipestorepro.presentation.viewmodels.account.LoginViewModel
 import com.example.recipestorepro.presentation.views.fragments.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -27,7 +27,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     }
 
     private fun setUpClickListener() {
-
         binding.loginButtonLogin.setOnClickListener {
             val email = binding.emailEdTxLogin.text.toString()
             val password = binding.passwordEdTxLogin.text.toString()

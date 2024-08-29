@@ -1,15 +1,15 @@
-package com.example.recipestorepro.domain.use_case
+package com.example.recipestorepro.domain.use_case.account
 
 import android.content.res.Resources
 import com.example.recipestorepro.R
 import com.example.recipestorepro.domain.models.User
-import com.example.recipestorepro.domain.repository.RecipeRepo
-import com.example.recipestorepro.domain.use_case.CreateUserUseCase.Companion.isEmailValid
-import com.example.recipestorepro.domain.use_case.CreateUserUseCase.Companion.isPasswordValid
+import com.example.recipestorepro.domain.repository.AuthRepo
+import com.example.recipestorepro.domain.use_case.account.CreateUserUseCase.Companion.isEmailValid
+import com.example.recipestorepro.domain.use_case.account.CreateUserUseCase.Companion.isPasswordValid
 import com.example.recipestorepro.domain.utils.Result
 
 class LoginUseCase(
-    private val repository: RecipeRepo,
+    private val repository: AuthRepo,
     private val resources: Resources
 ) {
 

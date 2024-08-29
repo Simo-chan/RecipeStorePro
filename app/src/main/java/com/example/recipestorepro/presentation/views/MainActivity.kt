@@ -3,7 +3,6 @@ package com.example.recipestorepro.presentation.views
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -25,42 +24,32 @@ class MainActivity : AppCompatActivity() {
         setUpBottomNavBar()
     }
 
-    override fun onStart() {
-        super.onStart()
-        setStartDestination()
-    }
-
     private fun setUpBottomNavBar() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
 
+        val startDestination = when (sessionManager.isUserLoggedIn()) {
+            true -> R.id.homePageFragment
+            false -> R.id.welcomeFragment
+        }
+
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavView)
+        val navGraph = navController.navInflater.inflate(R.navigation.bottom_nav_graph)
+        navGraph.setStartDestination(startDestination)
+        navController.graph = navGraph
         bottomNavigationView.setupWithNavController(navController)
 
         navHostFragment.findNavController().addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.welcomeFragment,
                 R.id.loginFragment,
-                R.id.signUpFragment -> bottomNavigationView.visibility =
+                R.id.signUpFragment,
+                R.id.createNewRecipeFragment -> bottomNavigationView.visibility =
                     View.GONE
 
                 else -> bottomNavigationView.visibility = View.VISIBLE
             }
         }
-
-    }
-
-    private fun setStartDestination() {
-        val navController = findNavController(R.id.navHostFragment)
-        val navGraph = navController.graph
-        val startDestination = if (sessionManager.isUserLoggedIn()) {
-            R.id.homePageFragment
-        } else {
-            R.id.welcomeFragment
-        }
-
-        navGraph.setStartDestination(startDestination)
-        navController.graph = navGraph
     }
 }

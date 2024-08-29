@@ -6,8 +6,8 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 
 class SessionManager(val context: Context) {
@@ -44,16 +44,14 @@ class SessionManager(val context: Context) {
 
     suspend fun logout() {
         context.datastore.edit {
+            delay(1000)
             it.clear()
         }
     }
 
     fun isUserLoggedIn(): Boolean {
-        val token = context.datastore.data.map { preferences ->
-            preferences[preferenceKey]
-        }
         return runBlocking {
-            token.first() != null
+            getJWTToken() != null
         }
     }
 

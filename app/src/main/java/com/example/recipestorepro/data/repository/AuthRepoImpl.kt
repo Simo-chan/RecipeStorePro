@@ -2,21 +2,19 @@ package com.example.recipestorepro.data.repository
 
 import android.content.res.Resources
 import com.example.recipestorepro.R
-import com.example.recipestorepro.data.local.RecipeDao
 import com.example.recipestorepro.data.remote.RecipeApi
-import com.example.recipestorepro.domain.models.User
-import com.example.recipestorepro.domain.repository.RecipeRepo
-import com.example.recipestorepro.domain.utils.Result
 import com.example.recipestorepro.data.utils.SessionManager
 import com.example.recipestorepro.data.utils.isNetworkConnected
+import com.example.recipestorepro.domain.models.User
+import com.example.recipestorepro.domain.repository.AuthRepo
+import com.example.recipestorepro.domain.utils.Result
 import javax.inject.Inject
 
-class RecipeRepoImpl @Inject constructor(
+class AuthRepoImpl @Inject constructor(
     private val recipeApi: RecipeApi,
-    private val recipeDao: RecipeDao,
     private val sessionManager: SessionManager,
     private val resources: Resources
-) : RecipeRepo {
+) : AuthRepo {
 
     override suspend fun createUser(user: User): Result<String> {
         return try {
@@ -36,7 +34,6 @@ class RecipeRepoImpl @Inject constructor(
             Result.Error(e.message ?: resources.getString(R.string.problem))
         }
     }
-
 
     override suspend fun login(user: User): Result<String> {
         return try {
