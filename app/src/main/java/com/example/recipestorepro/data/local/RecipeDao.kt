@@ -29,6 +29,9 @@ interface RecipeDao {
     @Query("UPDATE recipes SET locallyDeleted = 1 WHERE recipeId=:recipeId")
     suspend fun deleteRecipeLocally(recipeId: String)
 
+    @Query("DELETE FROM recipes")
+    suspend fun clearAllRecipes()
+
     @Query("SELECT * FROM recipes WHERE remotelyConnected = 0")
     suspend fun getAllLocalRecipes(): List<LocalRecipe>
 

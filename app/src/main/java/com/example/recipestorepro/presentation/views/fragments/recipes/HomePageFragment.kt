@@ -1,10 +1,13 @@
 package com.example.recipestorepro.presentation.views.fragments.recipes
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -25,12 +28,12 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>(FragmentHomePageB
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d("HomePageFragment", "onViewCreated called")
+        homePageViewModel.getAllRecipes()
         setUpRecyclerView()
         subscribeToRecipes()
-        subscribeToFavoriteRecipes()
-        //setUpSearchView()
+        setUpSearchView()
         setUpSwipeRefreshLayout()
-        homePageViewModel.syncRecipes()
     }
 
     override fun onResume() {
@@ -38,9 +41,9 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>(FragmentHomePageB
         setUpDropDownMenu()
     }
 
-    override fun onDestroy() {
-        binding.recipeRecyclerView.adapter = null
-        super.onDestroy()
+    override fun onDestroyView() {
+        Log.d("HomePageFragment", "onDestroyView called")
+        super.onDestroyView()
     }
 
     private fun setUpDropDownMenu() {
@@ -52,9 +55,9 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>(FragmentHomePageB
         binding.autoCompleteTextView.setOnItemClickListener { parent, _, position, _ ->
             val selectedItem = parent.getItemAtPosition(position) as String
             if (selectedItem == getString(R.string.recently_added)) {
-                subscribeToRecipes()
+                homePageViewModel.getAllRecipes()
             } else {
-                subscribeToFavoriteRecipes()
+                homePageViewModel.getFavoriteRecipes()
             }
         }
     }
@@ -73,14 +76,12 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>(FragmentHomePageB
     }
 
     private fun subscribeToRecipes() = lifecycleScope.launch {
-        homePageViewModel.allRecipeData.collect {
-            recipeAdapter.updateRecipeDataSet(it)
-        }
-    }
-
-    private fun subscribeToFavoriteRecipes() = lifecycleScope.launch {
-        homePageViewModel.favoriteRecipeData.collect {
-            recipeAdapter.updateRecipeDataSet(it)
+        repeatOnLifecycle(Lifecycle.State.STARTED) {
+            homePageViewModel.recipeData.collect {
+                recipeAdapter.updateRecipeDataSet(it)
+                isDataSetEmpty()
+                Log.d("HomePageFragment", "update recipe data is toggled")
+            }
         }
     }
 
@@ -93,13 +94,12 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>(FragmentHomePageB
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 lifecycleScope.launch {
-                    homePageViewModel.getAllRecipesByQuery(newText.orEmpty()).collect { recipes ->
-                        recipeAdapter.updateRecipeDataSet(recipes)
-                    }
+                    homePageViewModel.getAllRecipesByQuery(newText.orEmpty())
                 }
                 return false
             }
-        })
+        }
+        )
     }
 
     private val swipeToDelete = object : ItemTouchHelper.SimpleCallback(
@@ -137,6 +137,11 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>(FragmentHomePageB
                 binding.swipeRefreshLayout.isRefreshing = false
             }
         }
+    }
+
+    private fun isDataSetEmpty() {
+        if (recipeAdapter.recipeDataSet.isEmpty()) binding.noRecipesFound.visibility =
+            View.VISIBLE else binding.noRecipesFound.visibility = View.GONE
     }
 }
 

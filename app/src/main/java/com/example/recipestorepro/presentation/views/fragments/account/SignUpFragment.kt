@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.recipestorepro.R
 import com.example.recipestorepro.databinding.FragmentSignupBinding
@@ -27,7 +29,6 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(FragmentSignupBinding
     }
 
     private fun setUpClickListener() {
-
         binding.createAccountButton.setOnClickListener {
             val name = binding.nameEditText.text.toString()
             val email = binding.emailEdTxSignUp.text.toString()
@@ -44,21 +45,23 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding>(FragmentSignupBinding
     }
 
     private fun subscribeToRegisterEvents() = lifecycleScope.launch {
-        signUpViewModel.registerState.collect { result ->
-            when (result) {
-                is Result.Success -> {
-                    hideProgressBar()
-                    showResultMessage(result.resultMessage)
-                    findNavController().navigate(R.id.action_signUpFragment_to_homePageFragment)
-                }
+        repeatOnLifecycle(Lifecycle.State.STARTED) {
+            signUpViewModel.registerState.collect { result ->
+                when (result) {
+                    is Result.Success -> {
+                        hideProgressBar()
+                        showResultMessage(result.resultMessage)
+                        findNavController().navigate(R.id.action_signUpFragment_to_homePageFragment)
+                    }
 
-                is Result.Error -> {
-                    hideProgressBar()
-                    showResultMessage(result.resultMessage)
-                }
+                    is Result.Error -> {
+                        hideProgressBar()
+                        showResultMessage(result.resultMessage)
+                    }
 
-                is Result.Loading -> {
-                    showProgressBar()
+                    is Result.Loading -> {
+                        showProgressBar()
+                    }
                 }
             }
         }

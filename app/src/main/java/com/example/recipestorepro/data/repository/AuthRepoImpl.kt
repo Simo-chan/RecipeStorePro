@@ -2,6 +2,7 @@ package com.example.recipestorepro.data.repository
 
 import android.content.res.Resources
 import com.example.recipestorepro.R
+import com.example.recipestorepro.data.local.RecipeDao
 import com.example.recipestorepro.data.remote.RecipeApi
 import com.example.recipestorepro.data.utils.SessionManager
 import com.example.recipestorepro.data.utils.isNetworkConnected
@@ -13,6 +14,7 @@ import javax.inject.Inject
 class AuthRepoImpl @Inject constructor(
     private val recipeApi: RecipeApi,
     private val sessionManager: SessionManager,
+    private val recipeDao: RecipeDao,
     private val resources: Resources
 ) : AuthRepo {
 
@@ -71,6 +73,7 @@ class AuthRepoImpl @Inject constructor(
     override suspend fun logout(): Result<String> {
         return try {
             sessionManager.logout()
+            recipeDao.clearAllRecipes()
             Result.Success(resources.getString(R.string.logged_out))
         } catch (e: Exception) {
             e.printStackTrace()

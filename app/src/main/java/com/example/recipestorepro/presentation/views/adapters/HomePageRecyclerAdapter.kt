@@ -38,7 +38,6 @@ class HomePageRecyclerAdapter : RecyclerView.Adapter<HomePageRecyclerAdapter.Vie
         holder.bind(recipeDataSet[position])
     }
 
-
     inner class ViewHolder(private val binding: ItemsOfRecipeRecyclerViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(recipe: RecipeItem) {

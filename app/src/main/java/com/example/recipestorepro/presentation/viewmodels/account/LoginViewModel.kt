@@ -19,11 +19,11 @@ class LoginViewModel @Inject constructor(
     private val _loginState = MutableSharedFlow<Result<String>>()
     val loginState: SharedFlow<Result<String>> = _loginState
 
-    fun login(name: String, password: String) =
+    fun login(name: String, email: String, password: String) =
         viewModelScope.launch(exceptionHandler) {
             _loginState.emit(Result.Loading())
 
-            val result = loginUseCase.login(User("", name, password))
+            val result = loginUseCase.login(User(name, email, password))
             _loginState.emit(result)
         }
 }

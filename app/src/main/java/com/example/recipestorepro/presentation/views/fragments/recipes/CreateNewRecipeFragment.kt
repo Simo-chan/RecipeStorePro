@@ -43,10 +43,9 @@ class CreateNewRecipeFragment :
         subscribeToFavoriteStatusEvents()
     }
 
-    override fun onDestroy() {
-        (requireActivity() as AppCompatActivity).setSupportActionBar(null)
-        binding.saveButton.setOnClickListener(null)
-        super.onDestroy()
+    override fun onDestroyView() {
+        createNewRecipeViewModel.resetFavoriteValue()
+        super.onDestroyView()
     }
 
     private fun setRecipeText() {
@@ -88,7 +87,7 @@ class CreateNewRecipeFragment :
             showResultMessage(resources.getString(R.string.fields_empty))
             return
         }
-        createNewRecipeViewModel.createRecipe(title, ingredients, instructions)
+        curStat?.let { createNewRecipeViewModel.createRecipe(title, ingredients, instructions, it) }
     }
 
     private fun updateRecipe() {
@@ -101,34 +100,40 @@ class CreateNewRecipeFragment :
             createNewRecipeViewModel.deleteRecipe(oldRecipe?.id.orEmpty())
             return
         }
-        createNewRecipeViewModel.updateRecipe(title, ingredients, instructions)
+        curStat?.let { createNewRecipeViewModel.updateRecipe(title, ingredients, instructions, it) }
     }
 
     private fun subscribeToCreateRecipeEvents() = lifecycleScope.launch {
-        createNewRecipeViewModel.createRecipeState.collect { result ->
-            when (result) {
-                is Result.Success -> {
-                    showResultMessage(result.resultMessage)
-                    findNavController().popBackStack(R.id.homePageFragment, false)
-                }
+        repeatOnLifecycle(Lifecycle.State.STARTED) {
+            createNewRecipeViewModel.createRecipeState.collect { result ->
+                when (result) {
+                    is Result.Success -> {
+                        showResultMessage(result.resultMessage)
+                        findNavController().popBackStack(R.id.homePageFragment, false)
+                    }
 
-                else -> {
-                    showResultMessage(result.resultMessage)
+                    else -> {
+                        showResultMessage(result.resultMessage)
+                        findNavController().popBackStack(R.id.homePageFragment, false)
+                    }
                 }
             }
         }
     }
 
     private fun subscribeToUpdateRecipeEvents() = lifecycleScope.launch {
-        createNewRecipeViewModel.updateRecipeState.collect { result ->
-            when (result) {
-                is Result.Success -> {
-                    showResultMessage(result.resultMessage)
-                    findNavController().popBackStack(R.id.homePageFragment, false)
-                }
+        repeatOnLifecycle(Lifecycle.State.STARTED) {
+            createNewRecipeViewModel.updateRecipeState.collect { result ->
+                when (result) {
+                    is Result.Success -> {
+                        showResultMessage(result.resultMessage)
+                        findNavController().popBackStack(R.id.homePageFragment, false)
+                    }
 
-                else -> {
-                    showResultMessage(result.resultMessage)
+                    else -> {
+                        showResultMessage(result.resultMessage)
+                        findNavController().popBackStack(R.id.homePageFragment, false)
+                    }
                 }
             }
         }

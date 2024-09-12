@@ -84,11 +84,13 @@ object AppModule {
     fun provideAuthRepo(
         recipeApi: RecipeApi,
         sessionManager: SessionManager,
+        recipeDao: RecipeDao,
         resources: Resources
     ): AuthRepo {
         return AuthRepoImpl(
             recipeApi,
             sessionManager,
+            recipeDao,
             resources
         )
     }
