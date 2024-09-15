@@ -37,12 +37,12 @@
         app:layout_constraintStart_toEndOf="@id/avatarCardView">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="10dp"
                 android:paddingTop="10dp"
@@ -77,7 +77,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="10dp"
                 android:paddingTop="10dp"
@@ -97,7 +97,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/feedBackCardView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         app:cardCornerRadius="10dp"
@@ -112,7 +112,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="10dp"
                 android:paddingTop="10dp"

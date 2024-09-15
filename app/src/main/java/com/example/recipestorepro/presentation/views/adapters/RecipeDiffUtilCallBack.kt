@@ -18,5 +18,4 @@ class RecipeDiffUtilCallBack(
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
         newList[newItemPosition] == oldList[oldItemPosition]
-
 }

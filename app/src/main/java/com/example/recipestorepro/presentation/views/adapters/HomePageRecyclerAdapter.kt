@@ -55,6 +55,8 @@ class HomePageRecyclerAdapter : RecyclerView.Adapter<HomePageRecyclerAdapter.Vie
         }
     }
 
+
+
     private fun milliToDate(time: Long): String {
         val date = Date(time)
         val simpleDateFormat = SimpleDateFormat("MMM d, yyyy", Locale.getDefault())

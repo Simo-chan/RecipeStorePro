@@ -1,7 +1,6 @@
 package com.example.recipestorepro.presentation.views.fragments.recipes
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import androidx.fragment.app.activityViewModels
@@ -28,12 +27,11 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>(FragmentHomePageB
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("HomePageFragment", "onViewCreated called")
-        homePageViewModel.getAllRecipes()
         setUpRecyclerView()
         subscribeToRecipes()
         setUpSearchView()
         setUpSwipeRefreshLayout()
+        homePageViewModel.getAllRecipes()
     }
 
     override fun onResume() {
@@ -42,7 +40,7 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>(FragmentHomePageB
     }
 
     override fun onDestroyView() {
-        Log.d("HomePageFragment", "onDestroyView called")
+        binding.recipeRecyclerView.adapter = null
         super.onDestroyView()
     }
 
@@ -80,7 +78,6 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>(FragmentHomePageB
             homePageViewModel.recipeData.collect {
                 recipeAdapter.updateRecipeDataSet(it)
                 isDataSetEmpty()
-                Log.d("HomePageFragment", "update recipe data is toggled")
             }
         }
     }
@@ -89,7 +86,7 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>(FragmentHomePageB
         binding.searchView.setOnQueryTextListener(object :
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
+                return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {

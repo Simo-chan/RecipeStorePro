@@ -45,6 +45,7 @@ class CreateNewRecipeFragment :
 
     override fun onDestroyView() {
         createNewRecipeViewModel.resetFavoriteValue()
+        (requireActivity() as AppCompatActivity).setSupportActionBar(null)
         super.onDestroyView()
     }
 
