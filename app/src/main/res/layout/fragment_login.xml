@@ -31,10 +31,28 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/emailEditText"
+        android:id="@+id/nameEdTxLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
+        android:autofillHints=""
+        android:background="@drawable/custom_input"
+        android:hint="@string/name"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:paddingStart="12dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/grey"
+        app:layout_constraintBottom_toTopOf="@+id/emailEdTxLogin"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal" />
+
+    <EditText
+        android:id="@+id/emailEdTxLogin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:autofillHints=""
         android:background="@drawable/custom_input"
         android:hint="@string/email"
@@ -43,14 +61,14 @@
         android:paddingStart="12dp"
         android:textColor="@color/white"
         android:textColorHint="@color/grey"
-        app:layout_constraintBottom_toTopOf="@+id/passwordEditText"
+        app:layout_constraintBottom_toTopOf="@+id/passwordEdTxLogin"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
-        app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal" />
+        app:layout_constraintTop_toBottomOf="@id/nameEdTxLogin" />
 
 
     <EditText
-        android:id="@+id/passwordEditText"
+        android:id="@+id/passwordEdTxLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -62,22 +80,32 @@
         android:paddingStart="12dp"
         android:textColor="@color/white"
         android:textColorHint="@color/grey"
-        app:layout_constraintBottom_toTopOf="@+id/signUpButton"
+        app:layout_constraintBottom_toTopOf="@+id/loginButtonLogin"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
-        app:layout_constraintTop_toBottomOf="@+id/emailEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/emailEdTxLogin" />
 
 
     <Button
-        android:id="@+id/signUpButton"
+        android:id="@+id/loginButtonLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:background="@drawable/custom_button_round"
-        android:text="Start cooking!"
+        android:text="@string/start_cooking"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordEdTxLogin" />
+
+    <ProgressBar
+        android:id="@+id/progressBarLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@+id/passwordEdTxLogin" />
 
 
     <androidx.constraintlayout.widget.Guideline

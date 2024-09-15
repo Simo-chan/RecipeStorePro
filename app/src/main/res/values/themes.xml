@@ -4,10 +4,26 @@
     <style name="Theme.RecipeStorePro" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:fontFamily">@font/opensans_semibold</item>
         <item name="colorPrimary">@color/black</item>
+        <item name="android:statusBarColor">@color/black</item>
     </style>
 
     <style name="CustomExposedMenu" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
         <item name="boxBackgroundMode">none</item>
+    </style>
+
+    <style name="BottomSheetDialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+        <item name="android:windowMinWidthMajor">80%</item>
+        <item name="android:windowMinWidthMinor">80%</item>
+    </style>
+
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/custom_add_newrecipe_dialog</item>
+    </style>
+
+    <style name="CustomWidthDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="android:windowMinWidthMajor">80%</item>
+        <item name="android:windowMinWidthMinor">80%</item>
     </style>
 
 </resources>

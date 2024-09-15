@@ -7,7 +7,8 @@
     <item
         android:id="@+id/toBuyListFragment"
         android:icon="@drawable/ic_to_buy_list"
-        android:title="@string/to_buy_list" />
+        android:title="@string/to_buy_list"
+        android:visible="false"/>
     <item
         android:id="@+id/addNewRecipeFragment"
         android:icon="@drawable/ic_add"
@@ -15,7 +16,8 @@
     <item
         android:id="@+id/timerFragment"
         android:icon="@drawable/ic_timer"
-        android:title="@string/timer" />
+        android:title="@string/timer"
+        android:visible="false"/>
     <item
         android:id="@+id/settingsFragment"
         android:icon="@drawable/ic_settings"
