@@ -52,7 +52,7 @@ the page and all of your "offline" recipes should be uploaded to the cloud data 
 <img width="320" height="675" alt="Refreshed" src="https://github.com/user-attachments/assets/38981fcc-c2fa-4fc3-896a-6febd500b2e0" />
 
 On the Settings screen you can see you name and email that you logged in with. Here you can also change your avatar, your user preferences will be saved in Data Store. Additionally it is possible to send a feedback directly to me. Just press the feedback button and from there you can 
-contact me directly via Telegram or Email. Intents will take you directly to the apps. 
+contact me via Telegram or Email. Intents will take you straight to the apps. 
 
 <img width="320" height="675" alt="Settings page" src="https://github.com/user-attachments/assets/f305b45b-9c67-4a78-9cee-510dcb7b073d" />
 <img width="320" height="675" alt="Changed avatar" src="https://github.com/user-attachments/assets/d7d11f05-1acb-400f-a83a-dd90f8e56149" />
